@@ -45,6 +45,12 @@ public class MyArrayList<T> implements List<T> {
 	@Override
 	public boolean add(T element) {
 		// TODO: FILL THIS IN!
+		if(size >= array.length) {
+			T[] bigger = (T[]) new Object[array.length *2];
+			System.arraycopy(array, 0, bigger, 0, array.length);
+		}
+		array[size] = element;
+		size ++;
 		return false;
 	}
 
@@ -111,6 +117,11 @@ public class MyArrayList<T> implements List<T> {
 	@Override
 	public int indexOf(Object target) {
 		// TODO: FILL THIS IN!
+		for ( int i = 0 ; i < size ; i ++ ) {
+			if ( equals(target, array[i]) ) {
+				return i;
+			}
+		}
 		return -1;
 	}
 
@@ -182,7 +193,20 @@ public class MyArrayList<T> implements List<T> {
 	@Override
 	public T remove(int index) {
 		// TODO: FILL THIS IN!
-		return null;
+		T old = get(index);
+		// 내가 짠 코드는... index가 뒤쪽이면 뒤쪽일수록 선형으로 수행시간이 증가했을거다..
+//		for(int i = 0 ; i < array.length ; i ++) {
+//			if( i > index ) {
+//				array[i-1] = array[i];
+//			}
+//		}
+
+		for ( int i = index; i < size-1; i ++ ) {
+			array[i] = array[i+1];
+		}
+
+		size --;
+		return old;
 	}
 
 	@Override
