@@ -51,7 +51,7 @@ public class MyArrayList<T> implements List<T> {
 		}
 		array[size] = element;
 		size ++;
-		return false;
+		return true;
 	}
 
 	@Override

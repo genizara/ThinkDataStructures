@@ -1,9 +1,11 @@
-package com.allendowney.thinkdast;
+package main.java.com.allendowney.thinkdast;
 
+import java.time.Clock;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import com.allendowney.thinkdast.Profiler;
 import org.jfree.data.xy.XYSeries;
 
 import com.allendowney.thinkdast.Profiler.Timeable;
@@ -14,16 +16,17 @@ public class ProfileListAdd {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		profileArrayListAddEnd();
-		//profileArrayListAddBeginning();
-		//profileLinkedListAddBeginning();
-		//profileLinkedListAddEnd();
+//		profileArrayListAddEnd();
+//		profileArrayListAddBeginning();
+//		profileLinkedListAddBeginning();
+		profileLinkedListAddEnd();
 	}
 
 	/**
 	 * Characterize the run time of adding to the end of an ArrayList
 	 */
 	public static void profileArrayListAddEnd() {
+		System.out.println("profileArrayListAddEnd");
 		Timeable timeable = new Timeable() {
 			List<String> list;
 
@@ -38,7 +41,7 @@ public class ProfileListAdd {
 			}
 		};
 		int startN = 4000;
-		int endMillis = 1000;
+		int endMillis = 2000;
 		runProfiler("ArrayList add end", timeable, startN, endMillis);
 	}
 	
@@ -46,7 +49,25 @@ public class ProfileListAdd {
 	 * Characterize the run time of adding to the beginning of an ArrayList
 	 */
 	public static void profileArrayListAddBeginning() {
+		System.out.println("profileArrayListAddBeginning");
+
 		// TODO: FILL THIS IN!
+		Timeable timeable = new Timeable() {
+			List<String> list;
+
+			public void setup(int n) {
+				list = new ArrayList<String>();
+			}
+
+			public void timeMe(int n) {
+				for (int i=0; i<n; i++) {
+					list.add(0,"a string");
+				}
+			}
+		};
+		int startN = 4000;
+		int endMillis = 2000;
+		runProfiler("ArrayList add end", timeable, startN, endMillis);
 	}
 
 	/**
@@ -54,6 +75,23 @@ public class ProfileListAdd {
 	 */
 	public static void profileLinkedListAddBeginning() {
 		// TODO: FILL THIS IN!
+		System.out.println("profileLinkedListAddBeginning");
+		Timeable timeable = new Timeable() {
+			List<String> list;
+
+			public void setup(int n) {
+				list = new LinkedList<String>();
+			}
+
+			public void timeMe(int n) {
+				for (int i=0; i<n; i++) {
+					list.add(0,"a string");
+				}
+			}
+		};
+		int startN = 4000;
+		int endMillis = 2000;
+		runProfiler("LinkedList add end", timeable, startN, endMillis);
 	}
 
 	/**
@@ -61,6 +99,23 @@ public class ProfileListAdd {
 	 */
 	public static void profileLinkedListAddEnd() {
 		// TODO: FILL THIS IN!
+		System.out.println("profileLinkedListAddEnd");
+		Timeable timeable = new Timeable() {
+			List<String> list;
+
+			public void setup(int n) {
+				list = new LinkedList<String>();
+			}
+
+			public void timeMe(int n) {
+				for (int i=0; i<n; i++) {
+					list.add("a string");
+				}
+			}
+		};
+		int startN = 64000;
+		int endMillis = 4000;
+		runProfiler("LinkedList add end", timeable, startN, endMillis);
 	}
 
 	/**
