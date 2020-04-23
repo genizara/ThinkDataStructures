@@ -47,6 +47,9 @@ public class ProfileMapPut {
 		Timeable timeable = new Timeable() {
 			Map<String, Integer> map;
 
+//			public void setup(int n) {
+//				map = new MyHashMap<String, Integer>();
+//			}
 			public void setup(int n) {
 				map = new MyHashMap<String, Integer>();
 			}
@@ -58,7 +61,7 @@ public class ProfileMapPut {
 			}
 		};
 		int startN = 1000;
-		int endMillis = 5000;
+		int endMillis = 50000;
 		runProfiler("MyHashMap put", timeable, startN, endMillis);
 	}
 	
